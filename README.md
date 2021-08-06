@@ -1,3 +1,5 @@
+[![Lint](https://github.com/escalate/cookiecutter-ansible-raspberry-app-docker-role-template/actions/workflows/lint.yml/badge.svg?branch=master&event=push)](https://github.com/escalate/cookiecutter-ansible-raspberry-app-docker-role-template/actions/workflows/lint.yml)
+
 # Cookiecutter - Ansible role template for Docker applications on Raspberry Pi OS
 
 An Cookiecutter Ansible role template for Docker applications on Raspberry Pi OS.
