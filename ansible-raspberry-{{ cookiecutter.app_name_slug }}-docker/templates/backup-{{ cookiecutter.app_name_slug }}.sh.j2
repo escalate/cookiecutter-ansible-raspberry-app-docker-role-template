@@ -1,0 +1,30 @@
+#!/bin/bash
+set -e -E -u -C -o pipefail
+
+exec 1> >(logger -t $(basename $0)) 2>&1
+
+echo "Start {{ cookiecutter.app_name }} backup job"
+
+BACKUP_DIR="{% raw %}{{{% endraw %} {{ cookiecutter.app_name_ansible_var }}_backup_path }}"
+
+echo "Stop {{ cookiecutter.app_name }} service"
+systemctl stop {{ cookiecutter.app_name_slug }}.service
+
+while [ "$(docker ps --all --quiet --filter status=running --filter name={{ cookiecutter.app_name_slug }}.service)" ]; do
+    echo "{{ cookiecutter.app_name }} service is still running - wait 5 secs"
+    sleep 5
+done
+
+echo "Start backup of {{ cookiecutter.app_name }} data"
+# TODO
+
+echo "Start {{ cookiecutter.app_name }} service"
+systemctl start {{ cookiecutter.app_name_slug }}.service
+
+echo "Compress backup of {{ cookiecutter.app_name }} data"
+# TODO
+
+echo "Delete old {{ cookiecutter.app_name }} data backups"
+# TODO
+
+echo "Finish {{ cookiecutter.app_name }} backup job"

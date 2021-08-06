@@ -1,0 +1,40 @@
+[Unit]
+Description={{ cookiecutter.app_name }}
+After=docker.service
+Requires=docker.service
+
+[Service]
+Type=simple
+ExecStartPre=-/usr/bin/docker stop %n
+ExecStartPre=-/usr/bin/docker rm %n
+ExecStartPre=/usr/bin/docker pull {{ cookiecutter.app_docker_image }}:{% raw %}{{{% endraw %} {{ cookiecutter.app_name_ansible_var }}_docker_image_version }}
+ExecStart=/usr/bin/docker run \
+--name %n \
+--init \
+--memory={% raw %}{{{% endraw %} {{ cookiecutter.app_name_ansible_var }}_docker_memory }} \
+{% raw %}{%{% endraw %} if {{ cookiecutter.app_name_ansible_var }}_env_vars | dict2items | length > 0 %}
+--env-file=/etc/{{ cookiecutter.app_name_slug }}.env \
+{% raw %}{%{% endraw %} endif %}
+{% raw %}{%{% endraw %} if {{ cookiecutter.app_name_ansible_var }}_docker_labels | dict2items | length > 0 %}
+--label-file=/etc/{{ cookiecutter.app_name_slug }}.label \
+{% raw %}{%{% endraw %} endif %}
+{% if cookiecutter.app_backup_job | lower == "true" -%}
+--mount=type=bind,source={% raw %}{{{% endraw %} {{ cookiecutter.app_name_ansible_var }}_backup_path }},destination=/var/backups/{{ cookiecutter.app_name_slug }} \
+{% endif -%}
+--mount=type=bind,source={% raw %}{{{% endraw %} {{ cookiecutter.app_name_ansible_var }}_data_path }},destination=/var/lib/{{ cookiecutter.app_name_slug }} \
+--mount=type=bind,source={% raw %}{{{% endraw %} {{ cookiecutter.app_name_ansible_var }}_etc_path }},destination=/etc/{{ cookiecutter.app_name_slug }} \
+--network={% raw %}{{{% endraw %} {{ cookiecutter.app_name_ansible_var }}_docker_network }} \
+--network-alias={{ cookiecutter.app_name_slug }} \
+--publish=127.0.0.1:{{ cookiecutter.app_port }}:{{ cookiecutter.app_port }} \
+--user={{ cookiecutter.app_user_uid }}:0 \
+{{ cookiecutter.app_docker_image }}:{% raw %}{{{% endraw %} {{ cookiecutter.app_name_ansible_var }}_docker_image_version }}
+ExecStop=/usr/bin/docker stop %n
+SyslogIdentifier=%n
+TimeoutStartSec=infinity
+StartLimitInterval=30
+StartLimitBurst=5
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,22 @@
+- name: Converge
+  hosts: all
+  vars:
+    {{ cookiecutter.app_name_ansible_var }}_docker_image_version: latest
+    {{ cookiecutter.app_name_ansible_var }}_docker_memory: 1G
+    {{ cookiecutter.app_name_ansible_var }}_docker_labels:
+      maintainer: me@example.com
+    {{ cookiecutter.app_name_ansible_var }}_docker_network: internal
+    {% if cookiecutter.app_backup_job | lower == "true" -%}
+    {{ cookiecutter.app_name_ansible_var }}_backup_path: /var/backups/{{ cookiecutter.app_name_slug }}
+    {% endif -%}
+    {{ cookiecutter.app_name_ansible_var }}_data_path: /var/lib/{{ cookiecutter.app_name_slug }}
+    {{ cookiecutter.app_name_ansible_var }}_etc_path: /etc/{{ cookiecutter.app_name_slug }}
+    {% if cookiecutter.app_config_yaml | lower == "true" -%}
+    {{ cookiecutter.app_name_ansible_var }}_config: {}
+    {% endif -%}
+    {{ cookiecutter.app_name_ansible_var }}_env_vars:
+      # TODO
+      APP_TEST_ENV: "true"
+  roles:
+    - role: ansible-raspberry-{{ cookiecutter.app_name_slug }}-docker
+      tags: {{ cookiecutter.app_name_ansible_tag }}
