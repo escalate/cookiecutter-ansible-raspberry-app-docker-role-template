@@ -14,7 +14,7 @@ cookiecutter https://github.com/escalate/cookiecutter-ansible-raspberry-app-dock
 
 | Option                  | Default                          | Description |
 | ----------------------- | -------------------------------- | ----------- |
-| author_full_name        | Felix Börner                     | Name of the Ansible role author |
+| author_full_name        | Felix Börner                     | Name of Ansible role author |
 | author_galaxy_namespace | escalate                         | Galaxy namespace of Ansible role author |
 | author_github_user_name | escalate                         | Github username of Ansible role author |
 | author_funding_url      | https://paypal.me/felixboerner   | Funding URL of Ansible role author |
