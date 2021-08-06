@@ -5,7 +5,7 @@ An Cookiecutter Ansible role template for Docker applications on Raspberry Pi OS
 ## How to use?
 
 ```
-$ cookiecutter https://github.com/escalate/cookiecutter-ansible-raspberry-app-docker-role-template.git
+cookiecutter https://github.com/escalate/cookiecutter-ansible-raspberry-app-docker-role-template.git
 ```
 
 ## What options are available for generation?
