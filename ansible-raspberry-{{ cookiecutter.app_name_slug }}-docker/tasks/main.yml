@@ -45,29 +45,21 @@
 
 {% endif -%}
 - name: Define environment variables
-  community.general.ini_file:
-    path: /etc/{{ cookiecutter.app_name_slug }}.env
-    section: ""
-    option: "{% raw %}{{{% endraw %} item.key }}"
-    value: "{% raw %}{{{% endraw %} item.value }}"
-    no_extra_spaces: true
+  ansible.builtin.template:
+    src: {{ cookiecutter.app_name_slug }}.env.j2
+    dest: /etc/{{ cookiecutter.app_name_slug }}.env
     owner: root
     group: root
     mode: 0644
-  loop: "{% raw %}{{{% endraw %} {{ cookiecutter.app_name_ansible_var }}_env_vars | dict2items }}"
   notify: Restart {{ cookiecutter.app_name_slug }} service
 
 - name: Define Docker container labels
-  community.general.ini_file:
-    path: /etc/{{ cookiecutter.app_name_slug }}.label
-    section: ""
-    option: "{% raw %}{{{% endraw %} item.key }}"
-    value: "{% raw %}{{{% endraw %} item.value }}"
-    no_extra_spaces: true
+  ansible.builtin.template:
+    src: {{ cookiecutter.app_name_slug }}.label.j2
+    dest: /etc/{{ cookiecutter.app_name_slug }}.label
     owner: root
     group: root
     mode: 0644
-  loop: "{% raw %}{{{% endraw %} {{ cookiecutter.app_name_ansible_var }}_docker_labels | dict2items }}"
   notify: Restart {{ cookiecutter.app_name_slug }} service
 
 - name: Pull Docker image
