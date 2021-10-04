@@ -1,9 +1,9 @@
 #!/bin/bash
 set -e -E -u -C -o pipefail
 
-exec 1> >(logger -t $(basename $0)) 2>&1
+exec 1> >(logger --tag $(basename $0)) 2>&1
 
-echo "Start {{ cookiecutter.app_name }} backup job"
+echo "Start {{ cookiecutter.app_name }} backup"
 
 BACKUP_DIR="{% raw %}{{{% endraw %} {{ cookiecutter.app_name_ansible_var }}_backup_path }}"
 
@@ -27,4 +27,4 @@ echo "Compress backup of {{ cookiecutter.app_name }} data"
 echo "Delete old {{ cookiecutter.app_name }} data backups"
 # TODO
 
-echo "Finish {{ cookiecutter.app_name }} backup job"
+echo "Finish {{ cookiecutter.app_name }} backup"
