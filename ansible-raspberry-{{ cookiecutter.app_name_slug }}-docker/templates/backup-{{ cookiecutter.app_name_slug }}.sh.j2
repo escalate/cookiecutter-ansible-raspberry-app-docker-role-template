@@ -15,7 +15,7 @@ while [ "$(docker ps --all --quiet --filter status=running --filter name={{ cook
     sleep 5
 done
 
-echo "Start backup of {{ cookiecutter.app_name }} data"
+echo "Create backup of {{ cookiecutter.app_name }} data"
 # TODO
 
 echo "Start {{ cookiecutter.app_name }} service"
@@ -24,7 +24,7 @@ systemctl start {{ cookiecutter.app_name_slug }}.service
 echo "Compress backup of {{ cookiecutter.app_name }} data"
 # TODO
 
-echo "Delete old {{ cookiecutter.app_name }} data backups"
+echo "Delete {{ cookiecutter.app_name }} backup archives older than X days"
 # TODO
 
 echo "Finish {{ cookiecutter.app_name }} backup"
