@@ -103,6 +103,14 @@
     group: root
     mode: 0755
 
+- name: Create restore script
+  ansible.builtin.template:
+    src: restore-{{ cookiecutter.app_name_slug }}.sh.j2
+    dest: /usr/local/bin/restore-{{ cookiecutter.app_name_slug }}.sh
+    owner: root
+    group: root
+    mode: 0755
+
 - name: Add backup cron job
   ansible.builtin.cron:
     name: Backup {{ cookiecutter.app_name }}

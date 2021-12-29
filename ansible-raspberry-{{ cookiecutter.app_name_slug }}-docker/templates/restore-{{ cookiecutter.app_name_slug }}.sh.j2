@@ -1,0 +1,41 @@
+#!/bin/bash
+set -e -E -u -C -o pipefail
+
+exec 1> >(logger --stderr --tag $(basename $0)) 2>&1
+
+if [[ "$EUID" -ne 0 ]] ; then echo "Please run as root" ; exit 1 ; fi
+
+echo "Start restore of {{ cookiecutter.app_name }}"
+
+RESTORE_MARKER="/var/tmp/ALLOW_RESTORE_OF_{{ cookiecutter.app_name_ansible_var | upper }}"
+
+if [ ! -f "${RESTORE_MARKER}" ]; then
+    echo "Run - touch ${RESTORE_MARKER} - to allow restore of {{ cookiecutter.app_name }}"
+    exit 1
+fi
+
+BACKUP_DIR="{% raw %}{{{% endraw %} {{ cookiecutter.app_name_ansible_var }}_backup_path {% raw %}}}{% endraw %}"
+LAST_BACKUP_ARCHIVE="$(ls -t ${BACKUP_DIR}/### TODO ### | head --lines 1)"
+echo "Selected {{ cookiecutter.app_name }} backup archive: ${LAST_BACKUP_ARCHIVE}"
+
+echo "Stop {{ cookiecutter.app_name }} service"
+systemctl stop {{ cookiecutter.app_name_slug }}.service
+
+while [ "$(docker ps --all --quiet --filter status=running --filter name={{ cookiecutter.app_name_slug }}.service)" ]; do
+    echo "{{ cookiecutter.app_name }} service is still running - wait 5 secs"
+    sleep 5
+done
+
+echo "Decompress backup archive of {{ cookiecutter.app_name }} database"
+# TODO
+
+echo "Restore {{ cookiecutter.app_name }} database"
+# TODO
+
+echo "Start {{ cookiecutter.app_name }} service"
+systemctl start {{ cookiecutter.app_name_slug }}.service
+
+echo "Remove restore marker"
+rm "${RESTORE_MARKER}"
+
+echo "Finish restore of {{ cookiecutter.app_name }}"

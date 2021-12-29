@@ -20,3 +20,10 @@
   roles:
     - role: ansible-raspberry-{{ cookiecutter.app_name_slug }}-docker
       tags: {{ cookiecutter.app_name_ansible_tag }}
+  {% if cookiecutter.app_backup_job | lower == "true" -%}
+  post_tasks:
+    - name: Create marker file for restore
+      ansible.builtin.copy:
+        dest: /var/tmp/ALLOW_RESTORE_OF_{{ cookiecutter.app_name_ansible_var | upper }}
+        content: ""
+  {%- endif -%}
