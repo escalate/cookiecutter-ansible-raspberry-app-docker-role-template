@@ -6,6 +6,8 @@
     {{ cookiecutter.app_name_ansible_var }}_docker_labels:
       maintainer: me@example.com
     {{ cookiecutter.app_name_ansible_var }}_docker_network: internal
+    {{ cookiecutter.app_name_ansible_var }}_docker_publish_ports:
+      - 127.0.0.1:{{ cookiecutter.app_port }}:{{ cookiecutter.app_port }}
     {% if cookiecutter.app_backup_job | lower == "true" -%}
     {{ cookiecutter.app_name_ansible_var }}_backup_path: /var/backups/{{ cookiecutter.app_name_slug }}
     {% endif -%}
