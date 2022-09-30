@@ -27,7 +27,11 @@ ExecStart=/usr/bin/docker run \
 {% raw %}{%{% endraw %} if {{ cookiecutter.app_name_ansible_var }}_docker_network not in ['bridge', 'host', 'none'] %}
 --network-alias={{ cookiecutter.app_name_slug }} \
 {% raw %}{%{% endraw %} endif %}
---publish=127.0.0.1:{{ cookiecutter.app_port }}:{{ cookiecutter.app_port }} \
+{% raw %}{%{% endraw %} if {{ cookiecutter.app_name_ansible_var }}_docker_publish_ports | length > 0 %}
+{% raw %}{%{% endraw %} for port in {{ cookiecutter.app_name_ansible_var }}_docker_publish_ports %}
+--publish={% raw %}{{{% endraw %} port }} \
+{% raw %}{%{% endraw %} endfor %}
+{% raw %}{%{% endraw %} endif %}
 --user={{ cookiecutter.app_user_uid }}:0 \
 {{ cookiecutter.app_docker_image }}:{% raw %}{{{% endraw %} {{ cookiecutter.app_name_ansible_var }}_docker_image_version }}
 ExecStop=/usr/bin/docker stop %n
