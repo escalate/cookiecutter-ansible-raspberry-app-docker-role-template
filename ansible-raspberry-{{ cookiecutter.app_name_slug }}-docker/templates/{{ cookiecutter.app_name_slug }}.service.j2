@@ -5,11 +5,11 @@ Requires=docker.service
 
 [Service]
 Type=simple
-ExecStartPre=-/usr/bin/docker stop %n
-ExecStartPre=-/usr/bin/docker rm %n
+ExecStartPre=-/usr/bin/docker stop %N
+ExecStartPre=-/usr/bin/docker rm %N
 ExecStartPre=/usr/bin/docker pull {{ cookiecutter.app_docker_image }}:{% raw %}{{{% endraw %} {{ cookiecutter.app_name_ansible_var }}_docker_image_version }}
 ExecStart=/usr/bin/docker run \
---name %n \
+--name %N \
 --init \
 --memory={% raw %}{{{% endraw %} {{ cookiecutter.app_name_ansible_var }}_docker_memory }} \
 {% raw %}{%{% endraw %} if {{ cookiecutter.app_name_ansible_var }}_env_vars | dict2items | length > 0 %}
@@ -34,8 +34,8 @@ ExecStart=/usr/bin/docker run \
 {% raw %}{%{% endraw %} endif %}
 --user={{ cookiecutter.app_user_uid }}:0 \
 {{ cookiecutter.app_docker_image }}:{% raw %}{{{% endraw %} {{ cookiecutter.app_name_ansible_var }}_docker_image_version }}
-ExecStop=/usr/bin/docker stop %n
-SyslogIdentifier=%n
+ExecStop=/usr/bin/docker stop %N
+SyslogIdentifier=%N
 TimeoutStartSec=infinity
 StartLimitInterval=30
 StartLimitBurst=5

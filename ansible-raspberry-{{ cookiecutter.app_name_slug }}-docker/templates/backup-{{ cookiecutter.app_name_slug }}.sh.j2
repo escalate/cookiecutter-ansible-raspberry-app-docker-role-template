@@ -8,9 +8,9 @@ echo "Start {{ cookiecutter.app_name }} backup"
 BACKUP_DIR="{% raw %}{{{% endraw %} {{ cookiecutter.app_name_ansible_var }}_backup_path }}"
 
 echo "Stop {{ cookiecutter.app_name }} service"
-systemctl stop {{ cookiecutter.app_name_slug }}.service
+systemctl stop {{ cookiecutter.app_name_slug }}
 
-while [ "$(docker ps --all --quiet --filter status=running --filter name={{ cookiecutter.app_name_slug }}.service)" ]; do
+while [ "$(docker ps --all --quiet --filter status=running --filter name={{ cookiecutter.app_name_slug }})" ]; do
     echo "{{ cookiecutter.app_name }} service is still running - wait 5 secs"
     sleep 5
 done
@@ -19,7 +19,7 @@ echo "Create backup of {{ cookiecutter.app_name }} data"
 # TODO
 
 echo "Start {{ cookiecutter.app_name }} service"
-systemctl start {{ cookiecutter.app_name_slug }}.service
+systemctl start {{ cookiecutter.app_name_slug }}
 
 echo "Compress backup of {{ cookiecutter.app_name }} data"
 # TODO

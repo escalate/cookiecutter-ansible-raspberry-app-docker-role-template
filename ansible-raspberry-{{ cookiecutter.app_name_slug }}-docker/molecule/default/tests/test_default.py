@@ -55,7 +55,7 @@ def test_{{ cookiecutter.app_name_ansible_var }}_service(host):
 
 def test_{{ cookiecutter.app_name_ansible_var }}_docker_container(host):
     """Check {{ cookiecutter.app_name }} docker container"""
-    d = host.docker("{{ cookiecutter.app_name_slug }}.service").inspect()
+    d = host.docker("{{ cookiecutter.app_name_slug }}").inspect()
     assert d["HostConfig"]["Memory"] == 1073741824
     assert d["Config"]["Image"] == "{{ cookiecutter.app_docker_image }}:latest"
     assert d["Config"]["Labels"]["maintainer"] == "me@example.com"
