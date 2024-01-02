@@ -1,2 +1,2 @@
 [flake8]
-exclude = ansible-raspberry-{{ cookiecutter.app_name_slug }}-docker/molecule/default/tests/test_default.py
+exclude = ansible-raspberry-{{*cookiecutter.app_name_slug*}}-docker/molecule/default/tests/test_default.py
