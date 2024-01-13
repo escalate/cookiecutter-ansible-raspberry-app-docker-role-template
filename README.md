@@ -1,4 +1,4 @@
-[![Tests](https://github.com/escalate/cookiecutter-ansible-raspberry-app-docker-role-template/actions/workflows/tests.yml/badge.svg?branch=master&event=push)](https://github.com/escalate/cookiecutter-ansible-raspberry-app-docker-role-template/actions/workflows/tests.yml)
+[![Test](https://github.com/escalate/cookiecutter-ansible-raspberry-app-docker-role-template/actions/workflows/test.yml/badge.svg?branch=master&event=push)](https://github.com/escalate/cookiecutter-ansible-raspberry-app-docker-role-template/actions/workflows/test.yml)
 
 # Cookiecutter - Ansible role template for Docker applications on Raspberry Pi OS
 
