@@ -76,10 +76,16 @@
     mode: 0644
   notify: Restart {{ cookiecutter.app_name_slug }} service
 
-- name: Start and enable service
+- name: Start service
   ansible.builtin.systemd:
     name: {{ cookiecutter.app_name_slug }}
     state: started
+    daemon_reload: true
+  register: {{ cookiecutter.app_name_ansible_var }}_service_started
+
+- name: Enable service
+  ansible.builtin.systemd:
+    name: {{ cookiecutter.app_name_slug }}
     enabled: true
     daemon_reload: true
 
