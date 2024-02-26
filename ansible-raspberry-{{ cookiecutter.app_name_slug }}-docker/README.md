@@ -2,13 +2,7 @@
 
 # Ansible Role: Raspberry - {{ cookiecutter.app_name }} (Docker)
 
-An Ansible role that manages [{{ cookiecutter.app_name }}]({{ cookiecutter.app_website }}) Docker container with systemd on Raspberry Pi OS (Debian Bullseye).
-
-## Install
-
-```
-$ ansible-galaxy install {{ cookiecutter.author_galaxy_namespace }}.{{ cookiecutter.app_name_ansible_var }}
-```
+An Ansible role that manages [{{ cookiecutter.app_name }}]({{ cookiecutter.app_website }}) Docker container with systemd on Raspberry Pi OS (Debian Bookworm).
 
 ## Role Variables
 
