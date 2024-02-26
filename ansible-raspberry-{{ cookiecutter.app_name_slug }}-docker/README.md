@@ -1,4 +1,4 @@
-[![Molecule](https://github.com/{{ cookiecutter.author_github_user_name }}/ansible-raspberry-{{ cookiecutter.app_name_slug }}-docker/actions/workflows/molecule.yml/badge.svg?branch=master&event=push)](https://github.com/{{ cookiecutter.author_github_user_name }}/ansible-raspberry-{{ cookiecutter.app_name_slug }}-docker/actions/workflows/molecule.yml)
+[![Test](https://github.com/{{ cookiecutter.author_github_user_name }}/ansible-raspberry-{{ cookiecutter.app_name_slug }}-docker/actions/workflows/test.yml/badge.svg?branch=master&event=push)](https://github.com/{{ cookiecutter.author_github_user_name }}/ansible-raspberry-{{ cookiecutter.app_name_slug }}-docker/actions/workflows/test.yml)
 
 # Ansible Role: Raspberry - {{ cookiecutter.app_name }} (Docker)
 
@@ -14,6 +14,12 @@ This role relies on the following dependencies:
 
 * Roles: [requirements.yml](https://github.com/{{ cookiecutter.author_github_user_name }}/ansible-raspberry-{{ cookiecutter.app_name_slug }}-docker/blob/master/requirements.yml)
 * Collections: [requirements.yml](https://github.com/{{ cookiecutter.author_github_user_name }}/ansible-raspberry-{{ cookiecutter.app_name_slug }}-docker/blob/master/requirements.yml)
+
+## Installation
+
+```
+$ ansible-galaxy role install {{ cookiecutter.author_galaxy_namespace }}.{{ cookiecutter.app_name_ansible_var }}
+```
 
 ## Example Playbook
 
