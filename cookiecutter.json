@@ -1,20 +1,20 @@
 {
-    "author_full_name": "Felix Börner",
-    "author_galaxy_namespace": "escalate",
-    "author_github_user_name": "escalate",
-    "author_funding_url": "https://paypal.me/felixboerner",
-    "app_name": "Grafana",
-    "app_name_slug": "{{ cookiecutter.app_name | lower | replace(' ', '-') }}",
-    "app_name_ansible_var": "{{ cookiecutter.app_name_slug | replace('-', '_') }}",
-    "app_name_ansible_tag": "{{ cookiecutter.app_name_slug | replace('-', '') }}",
-    "app_user_uid": "10000",
-    "app_docker_image": "grafana/grafana",
-    "app_port": "3000",
-    "app_website": "https://grafana.com/oss/grafana/",
-    "app_config_yaml": [true, false],
-    "app_backup_job": [true, false],
-    "_copy_without_render": [
-        ".github/workflows/*.yml",
-        "molecule/default/Dockerfile.j2"
-    ]
+  "author_full_name": "Felix Börner",
+  "author_galaxy_namespace": "escalate",
+  "author_github_user_name": "escalate",
+  "author_funding_url": "https://paypal.me/felixboerner",
+  "app_name": "Grafana",
+  "app_name_slug": "{{ cookiecutter.app_name | lower | replace(' ', '-') }}",
+  "app_name_ansible_var": "{{ cookiecutter.app_name_slug | replace('-', '_') }}",
+  "app_name_ansible_tag": "{{ cookiecutter.app_name_slug | replace('-', '') }}",
+  "app_user_uid": "10000",
+  "app_docker_image": "grafana/grafana",
+  "app_port": "3000",
+  "app_website": "https://grafana.com/oss/grafana/",
+  "app_config_yaml": [true, false],
+  "app_backup_job": [true, false],
+  "_copy_without_render": [
+    ".github/workflows/*.yml",
+    "molecule/default/Dockerfile.j2"
+  ]
 }

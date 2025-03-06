@@ -62,8 +62,7 @@ def test_{{ cookiecutter.app_name_ansible_var }}_docker_container(host):
     # TODO
     assert "APP_TEST_ENV=true" in d["Config"]["Env"]
     assert "internal" in d["NetworkSettings"]["Networks"]
-    assert \
-        "{{ cookiecutter.app_name_slug }}" in d["NetworkSettings"]["Networks"]["internal"]["Aliases"]
+    assert "{{ cookiecutter.app_name_slug }}" in d["NetworkSettings"]["Networks"]["internal"]["Aliases"]
 {%- if cookiecutter.app_backup_job | lower == "true" %}
 
 
