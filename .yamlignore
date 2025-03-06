@@ -1,0 +1,4 @@
+ansible-raspberry-{{ cookiecutter.app_name_slug }}-docker/defaults/main.yml
+ansible-raspberry-{{ cookiecutter.app_name_slug }}-docker/meta/main.yml
+ansible-raspberry-{{ cookiecutter.app_name_slug }}-docker/molecule/default/converge.yml
+ansible-raspberry-{{ cookiecutter.app_name_slug }}-docker/tasks/main.yml

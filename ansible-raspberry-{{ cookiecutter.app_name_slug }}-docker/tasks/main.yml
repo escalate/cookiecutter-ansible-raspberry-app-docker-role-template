@@ -12,7 +12,7 @@
     state: directory
     owner: root
     group: root
-    mode: 0755
+    mode: "0755"
 
 - name: Create data directory
   ansible.builtin.file:
@@ -20,7 +20,7 @@
     state: directory
     owner: {{ cookiecutter.app_name_slug }}
     group: root
-    mode: 0775
+    mode: "0775"
 
 {% if cookiecutter.app_backup_job | lower == "true" -%}
 - name: Create backup directory
@@ -29,7 +29,7 @@
     state: directory
     owner: {{ cookiecutter.app_name_slug }}
     group: root
-    mode: 0775
+    mode: "0775"
 
 {% endif -%}
 {% if cookiecutter.app_config_yaml | lower == "true" -%}
@@ -39,7 +39,7 @@
     dest: "{% raw %}{{{% endraw %} {{ cookiecutter.app_name_ansible_var }}_etc_path }}/{{ cookiecutter.app_name_slug }}.yml"
     owner: root
     group: root
-    mode: 0644
+    mode: "0644"
   no_log: true
   notify: Restart {{ cookiecutter.app_name_slug }} service
 
@@ -50,7 +50,7 @@
     dest: /etc/{{ cookiecutter.app_name_slug }}.env
     owner: root
     group: root
-    mode: 0644
+    mode: "0644"
   notify: Restart {{ cookiecutter.app_name_slug }} service
 
 - name: Define Docker container labels
@@ -59,7 +59,7 @@
     dest: /etc/{{ cookiecutter.app_name_slug }}.label
     owner: root
     group: root
-    mode: 0644
+    mode: "0644"
   notify: Restart {{ cookiecutter.app_name_slug }} service
 
 - name: Pull Docker image
@@ -73,7 +73,7 @@
     dest: /etc/systemd/system/{{ cookiecutter.app_name_slug }}.service
     owner: root
     group: root
-    mode: 0644
+    mode: "0644"
   notify: Restart {{ cookiecutter.app_name_slug }} service
 
 - name: Start service
@@ -107,7 +107,7 @@
     dest: /usr/local/bin/backup-{{ cookiecutter.app_name_slug }}.sh
     owner: root
     group: root
-    mode: 0755
+    mode: "0755"
 
 - name: Create restore script
   ansible.builtin.template:
@@ -115,7 +115,7 @@
     dest: /usr/local/bin/restore-{{ cookiecutter.app_name_slug }}.sh
     owner: root
     group: root
-    mode: 0755
+    mode: "0755"
 
 - name: Add backup cron job
   ansible.builtin.cron:
