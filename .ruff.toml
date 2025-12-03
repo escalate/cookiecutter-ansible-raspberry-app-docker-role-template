@@ -1,1 +1,1 @@
-extend-exclude = [ "[{][{] cookiecutter.app_name_slug [}][}]" ]
+extend-exclude = [ "ansible-raspberry-[{][{] cookiecutter.app_name_slug [}][}]-docker" ]
