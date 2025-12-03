@@ -1,0 +1,1 @@
+extend-exclude = [ "[{][{] cookiecutter.app_name_slug [}][}]" ]
