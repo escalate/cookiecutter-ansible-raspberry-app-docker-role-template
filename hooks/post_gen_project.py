@@ -14,3 +14,4 @@ if app_config == "false":
 
 if app_backup_job == "false":
     os.remove("./templates/backup-{{ cookiecutter.app_name_slug }}.sh.j2")
+    os.remove("./templates/restore-{{ cookiecutter.app_name_slug }}.sh.j2")
